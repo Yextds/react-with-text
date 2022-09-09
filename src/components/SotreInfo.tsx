@@ -17,7 +17,7 @@ const StoreInfo = (data: props) => {
   useEffect(() => {
     
     getCurrentLocationLatLng();
-  }, []);
+  });
   const getCurrentLocationLatLng = () => {
     navigator?.geolocation.getCurrentPosition(
       ({ coords: { latitude: lat, longitude: lng } }) => {
