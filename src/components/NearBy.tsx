@@ -11,10 +11,7 @@ type props = {
 const NearBy = (entities: props) => {
   const [data, setData] = useState([]);
   const { t, i18n } = useTranslation();
-  useEffect(() => {
-    console.log(entities.prop.response.entities, ">>>>>>>>>>>>>");
-    // getRestoData();
-  }, []);
+ 
   function getRestoData() {
     let url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500&location=${entities.prop.latitude},${entities.prop.longitude}&filter={}&api_key=b262ae7768eec3bfa53bfca6d48e4000&v=20181201&resolvePlaceholders=true&entityTypes=location`;
 
