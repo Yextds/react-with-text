@@ -55,7 +55,7 @@ const About: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <Banner prop={document.c_webbanner}></Banner>
+      {/* <Banner prop={document.c_webbanner}></Banner> */}
       <div className="centered-container">
         <div className="section space-y-10 px-10">
           <h1 className="">About Page</h1>
