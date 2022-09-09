@@ -1,6 +1,25 @@
 import * as React from "react";
-import Cta from "../components/cta";
-import { Address } from "@yext/pages/components";
+import Cta from "./Cta";
+
+type Address = {
+  line1: string;
+  line2?: string;
+  city: string;
+  region: string;
+  postalCode: string;
+  countryCode: string;
+};
+
+const renderPrettyAddress = (address: Address) => {
+  return (
+    <>
+      <div>{address.line1}</div>
+      <div>
+        {address.city}, {address.region}
+      </div>
+    </>
+  );
+};
 
 const Contact = (props: any) => {
   const { address, phone } = props;
@@ -10,7 +29,7 @@ const Contact = (props: any) => {
       <div className="grid gap-y-5">
         <div className="text-xl font-semibold">Contact</div>
         <div className="grid gap-y-3">
-          <Address address={address} />
+          <div className="">{renderPrettyAddress(address)}</div>
           <div>
             <a href="#">{phone}</a>
           </div>

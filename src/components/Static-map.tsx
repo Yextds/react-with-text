@@ -7,7 +7,7 @@ type Coordinates = {
 
 const StaticMap = (props: Coordinates) => {
   const { latitude, longitude } = props;
-
+  console.log(props, "sdfhksd ufyhius yfiusy");
   return (
     <>
       <img

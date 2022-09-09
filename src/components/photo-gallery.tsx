@@ -14,16 +14,20 @@ type Image = {
 };
 
 type PhotoGallery = {
-  photoGallery: Image[];
+  photoGallery: any;
 };
 
 const PhotoGallery = (props: PhotoGallery) => {
   const { photoGallery } = props;
-
+  React.useEffect(() => {
+    photoGallery.map((image: any, index: any) =>
+      console.log(image.image.url, "iiiiiiii")
+    );
+  });
   return (
-    <div>
-      {photoGallery.map((image, index) => (
-        <img src={image.url} key={index} />
+    <div className="photoGallery" style={{ display: "flex", height: "400px" }}>
+      {photoGallery.map((i: any, index: any) => (
+        <img src={i.image.url} key={index} />
       ))}
     </div>
   );

@@ -1,21 +1,27 @@
-/**
- * This is an example of how to create a template that makes use of streams data.
- * The stream data originates from Yext's Knowledge Graph. When a template in
- * concert with a stream is built by the Yext Sites system, a static html page
- * is generated for every corresponding (based on the filter) stream document.
- *
- * Another way to think about it is that a page will be generated using this
- * template for every eligible entity in your Knowledge Graph.
- */
-
 import * as React from "react";
-import Banner from "../components/banner";
-import Cta from "../components/cta";
-import Contact from "../components/contact";
-import List from "../components/list";
-import Hours from "../components/hours";
-import StaticMap from "../components/static-map";
+import { useEffect } from "react";
+import StaticMap from "../components/Static-map";
+import Banner from "../components/Banner";
+import HeaderDetail from "../components/DetailHeader";
+import Breadcrumb from "../components/Breadcrumb";
+import LocationInformation from "../components/LocationInformation";
+import About from "../components/About";
+import FoodList from "../components/FoodList";
+import NearBy from "../components/NearBy";
+import Dfooter from "../components/Dfooter";
+import StoreInfo from "../components/SotreInfo";
+import LocationTimming from "../components/LocationTimming";
+import Map from "../components/Map";
+import PhotoGallery from "../components/photo-gallery";
+import { useTranslation } from "react-i18next";
+import { withTranslation } from "react-i18next";
+import "../i18n";
+import { nearByLocation } from "../types/nearByLocation";
 import "../index.css";
+import "../main.css";
+
+// const location = useLocation();
+
 import {
   Template,
   GetPath,
@@ -25,37 +31,45 @@ import {
   TemplateRenderProps,
   GetHeadConfig,
   HeadConfig,
+  TransformProps,
 } from "@yext/pages";
-import PageLayout from "../components/page-layout";
 
+var arr4: any = [];
+var Array: any = {};
 /**
  * Required when Knowledge Graph data is used for a template.
  */
+
 export const config: TemplateConfig = {
   stream: {
     $id: "my-stream-id-1",
+
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
+
     fields: [
       "id",
       "uid",
       "meta",
       "name",
       "address",
-      "mainPhone",
       "description",
       "hours",
       "slug",
       "geocodedCoordinate",
       "services",
+      "photoGallery",
+      "c_webbanner",
+      "mainPhone",
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
       entityTypes: ["location"],
     },
+
     // The entity language profiles that documents will be generated for.
     localization: {
-      locales: ["en"],
+      locales: ["en", "fr"],
       primary: false,
     },
   },
@@ -67,8 +81,10 @@ export const config: TemplateConfig = {
  * NOTE: This currently has no impact on the local dev path. Local dev urls currently
  * take on the form: featureName/entityId
  */
+
 export const getPath: GetPath<TemplateProps> = ({ document }) => {
-  return `location/${document.id.toString()}`;
+  // return `location/${document.locale}/${document.slug}`;
+  return `${document.locale}/${document.id.toString()}`;
 };
 
 /**
@@ -77,8 +93,10 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
  * NOTE: This currently has no impact on the local dev path. Redirects will be setup on
  * a new deploy.
  */
+
 export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`index-old/${document.id.toString()}`];
+  // return [`old-endpoint`, `stale-endpoint`, `redirect-me`];
+  return ["https://hitchhikers.yext.com/docs/pages/redirects"];
 };
 
 /**
@@ -106,6 +124,16 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
     ],
   };
 };
+type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
+export const transformProps: TransformProps<ExternalApiData> = async (
+  data: any
+) => {
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500&location=${data.document.geocodedCoordinate.latitude},${data.document.geocodedCoordinate.longitude}&filter={}&api_key=b262ae7768eec3bfa53bfca6d48e4000&v=20181201&resolvePlaceholders=true&entityTypes=location`;
+  const externalApiData = (await fetch(url).then((res: any) =>
+    res.json()
+  )) as nearByLocation;
+  return { ...data, externalApiData };
+};
 
 /**
  * This is the main template. It can have any name as long as it's the default export.
@@ -116,59 +144,180 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = ({
  * components any way you'd like as long as it lives in the src folder (though you should not put
  * them in the src/templates folder as this is specific for true template files).
  */
-const Location: Template<TemplateRenderProps> = ({
+
+type ExternalApiRenderData = TemplateRenderProps & {
+  externalApiData: nearByLocation;
+};
+
+const Location: Template<ExternalApiRenderData> = ({
   relativePrefixToRoot,
   path,
+  externalApiData,
   document,
 }) => {
   const {
     _site,
     name,
+    meta,
+    photoGallery,
     address,
     openTime,
     hours,
     mainPhone,
     geocodedCoordinate,
     services,
+    c_webbanner,
+    slug,
   } = document;
+  const [img, setImg] = React.useState("");
+  const [banner, setBanner] = React.useState("");
+  const [closingTime, setClosingTime] = React.useState("");
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    let dayName = getDayName(dayIndex);
+    if (hours) {
+      getRestoTimming(dayName);
+    } else {
+      console.log("hours not exist");
+    }
+    setBanner(c_webbanner.banner.url);
+    setImg(photoGallery);
+  }, []);
+
+  var dayIndex = new Date().getDay();
+  const getDayName = (dayIndex: any) => {
+    const days = [
+      "sunday",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+    ];
+    return days[dayIndex];
+  };
+
+  function getRestoTimming(cday: any) {
+    let day = hours != undefined && hours ? hours : [];
+
+    let indexOfCurrentDay = new Date().getDay() - 1;
+
+    let arr =
+      day &&
+      Object.keys(day).map((key) => {
+        return { [key]: day[key] };
+      });
+
+    let arr2 = [];
+    for (let i = indexOfCurrentDay; i < arr.length; i++) {
+      arr2.push(arr[i]);
+    }
+
+    for (let i = 0; i < indexOfCurrentDay; i++) {
+      arr2.push(arr[i]);
+    }
+    let arr3: any = [];
+    arr3 = arr2;
+    var index: any;
+
+    let days = [
+      "sunday",
+      "monday",
+      "tuesday",
+      "wednesday",
+      "thursday",
+      "friday",
+      "saturday",
+    ];
+    let DAY: any = [];
+    days.map((i: any) => {
+      arr3.map((j: any) => {
+        if (i === Object.keys(j)[0]) {
+          DAY = [...DAY, j];
+        }
+      });
+    });
+
+    DAY.map((i: any) => {
+      if (Object.keys(i)[0] === cday) {
+        index = DAY.indexOf(i);
+      }
+    });
+
+    for (let i = index; i < DAY.length; i++) {
+      arr4.push(DAY[i]);
+    }
+
+    for (let i = 0; i < index; i++) {
+      arr4.push(DAY[i]);
+    }
+    let time: any = Object.values(arr4[0])[0];
+
+    setClosingTime(time.openIntervals[0].end);
+    // Array.push({
+    //   photoGallery: photoGallery,
+    //   address: address,
+    //   mainPhone: mainPhone,
+    //   name: name,
+    //   _site: _site,
+    //   geocodedCoordinate: geocodedCoordinate,
+    //   services: services,
+    //   hours: arr4,
+    //   closeTime: time.openIntervals[0].end,
+    // });
+  }
 
   return (
     <>
-      <PageLayout _site={_site}>
-        <Banner name={name} address={address} openTime={openTime}>
-          <div className="bg-white h-40 w-1/5 flex items-center justify-center text-center flex-col space-y-4 rounded-lg">
-            <div className="text-black text-base">Visit Us Today!</div>
-            <Cta
-              buttonText="Get Directions"
-              url="http://google.com"
-              style="primary-cta"
-            />
+      {/* <AppInformation/> */}
+      <HeaderDetail />
+      <Breadcrumb />
+      <Banner prop={banner} />
+      <div className="location-information">
+        <div className="container">
+          <div className="w-full text-center pb-3 md:pb-5">
+            <h2 className="store-time-status">
+              <strong>{t("Open now")}</strong> - {t("closes at")} {closingTime}
+            </h2>
           </div>
-        </Banner>
-        <div className="centered-container">
-          <div className="section">
-            <div className="grid grid-cols-3 gap-x-10 gap-y-10">
-              <div className="bg-gray-100 p-5 space-y-12">
-                <Contact address={address} phone={mainPhone}></Contact>
-                {services && <List list={services}></List>}
-              </div>
-              <div className="col-span-2 pt-5 space-y-10">
-                <div>
-                  {hours && <Hours title={"Restaurant Hours"} hours={hours} />}
-                </div>
-                {geocodedCoordinate && (
-                  <StaticMap
-                    latitude={geocodedCoordinate.latitude}
-                    longitude={geocodedCoordinate.longitude}
-                  ></StaticMap>
-                )}
+          <div className="boxes">
+            <StoreInfo
+              prop={
+                (Array = {
+                  address: address,
+                  mainPhone: mainPhone,
+                  name: name,
+                  _site: _site,
+                  geocodedCoordinate: geocodedCoordinate,
+                })
+              }
+            />
+            <LocationTimming props={arr4} />
+            {/* <Map props={geocodedCoordinate} /> */}
+            <div className="box map-info">
+              <div className="inner-box">
+                <StaticMap
+                  latitude={geocodedCoordinate.latitude}
+                  longitude={geocodedCoordinate.longitude}
+                />
               </div>
             </div>
           </div>
         </div>
-      </PageLayout>
+      </div>
+
+      {/* <LocationInformation props={Array} /> */}
+      <About prop={img} />
+      {/* <FoodList prop={img} /> */}
+      {/* <PhotoGallery photoGallery={photoGallery} /> */}
+      <NearBy prop={externalApiData} />
+      <Dfooter />
+      {/*
+       */}
     </>
   );
 };
 
-export default Location;
+export default withTranslation()(Location);

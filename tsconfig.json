@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "strict": true,
+    "useUnknownInCatchVariables": false,
     "moduleResolution": "Node",
     "forceConsistentCasingInFileNames": true,
     "jsx": "react",

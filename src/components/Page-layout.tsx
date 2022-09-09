@@ -1,7 +1,7 @@
 import * as React from "react";
 import Site from "../types/Site";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./Header";
+import Footer from "./Footer";
 
 type Props = {
   _site: Site;

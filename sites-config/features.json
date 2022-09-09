@@ -1,6 +1,20 @@
 {
   "features": [
     {
+      "name": "404",
+      "templateType": "JS",
+      "staticPage": {
+        "plugin": {}
+      }
+    },
+    {
+      "name": "about",
+      "templateType": "JS",
+      "staticPage": {
+        "plugin": {}
+      }
+    },
+    {
       "name": "location",
       "streamId": "my-stream-id-1",
       "templateType": "JS",
@@ -25,12 +39,14 @@
         "meta",
         "name",
         "address",
-        "mainPhone",
         "description",
         "hours",
         "slug",
         "geocodedCoordinate",
-        "services"
+        "services",
+        "photoGallery",
+        "c_webbanner",
+        "mainPhone"
       ],
       "filter": {
         "entityTypes": [
@@ -39,7 +55,8 @@
       },
       "localization": {
         "locales": [
-          "en"
+          "en",
+          "fr"
         ],
         "primary": false
       }
