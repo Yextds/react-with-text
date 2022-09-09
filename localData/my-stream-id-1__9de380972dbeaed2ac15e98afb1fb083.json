@@ -1,0 +1,96 @@
+{
+	"__": {
+		"entityPageSet": {
+			"plugin": {}
+		},
+		"name": "location",
+		"streamId": "my-stream-id-1",
+		"templateType": "JS"
+	},
+	"address": {
+		"city": "New York",
+		"countryCode": "US",
+		"line1": "622 Broadway",
+		"localizedCountryName": "United States",
+		"localizedRegionName": "New York",
+		"postalCode": "10012",
+		"region": "NY"
+	},
+	"businessId": 0,
+	"description": "Turtlehead Tacos is a taco restaurant chain located in New York, NY. We're serving all your favorite menu items, from classic tacos and burritos, to new favorites like the Turtlehead Taco Ultimate Taco and Cheesy Turtlehead Deluxe. Order ahead online or on the mobile app for pick up at the restaurant or get it delivered.",
+	"geocodedCoordinate": {
+		"latitude": 40.725771,
+		"longitude": -73.995907
+	},
+	"hours": {
+		"friday": {
+			"openIntervals": [
+				{
+					"end": "19:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"monday": {
+			"openIntervals": [
+				{
+					"end": "19:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"saturday": {
+			"openIntervals": [
+				{
+					"end": "20:00",
+					"start": "08:00"
+				}
+			]
+		},
+		"sunday": {
+			"isClosed": true
+		},
+		"thursday": {
+			"openIntervals": [
+				{
+					"end": "19:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"tuesday": {
+			"openIntervals": [
+				{
+					"end": "19:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"wednesday": {
+			"openIntervals": [
+				{
+					"end": "19:00",
+					"start": "10:00"
+				}
+			]
+		}
+	},
+	"id": "location7",
+	"key": "0:location:knowledgeGraph:24844077:en",
+	"locale": "en",
+	"mainPhone": "+12129943900",
+	"meta": {
+		"entityType": {
+			"id": "location",
+			"uid": 0
+		},
+		"locale": "en",
+		"updateTimestamp": "2022-08-29T06:07:32Z"
+	},
+	"name": "Turtlehead Tacos",
+	"siteDomain": "",
+	"siteId": 0,
+	"siteInternalHostName": "",
+	"slug": "location7-noho",
+	"uid": 24844077
+}

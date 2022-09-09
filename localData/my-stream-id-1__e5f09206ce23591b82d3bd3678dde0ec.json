@@ -1,0 +1,99 @@
+{
+	"__": {
+		"entityPageSet": {
+			"plugin": {}
+		},
+		"name": "location",
+		"streamId": "my-stream-id-1",
+		"templateType": "JS"
+	},
+	"address": {
+		"city": "Milan",
+		"countryCode": "IT",
+		"line1": "Bastioni di Porta Nuova",
+		"line2": "21",
+		"localizedCountryName": "Italy",
+		"postalCode": "20121"
+	},
+	"businessId": 0,
+	"geocodedCoordinate": {
+		"latitude": 45.48003,
+		"longitude": 9.18812
+	},
+	"hours": {
+		"friday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"monday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"saturday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"sunday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"thursday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		},
+		"tuesday": {
+			"isClosed": true
+		},
+		"wednesday": {
+			"isClosed": false,
+			"openIntervals": [
+				{
+					"end": "07:00",
+					"start": "10:00"
+				}
+			]
+		}
+	},
+	"id": "location20",
+	"key": "0:location:knowledgeGraph:24844081:en",
+	"locale": "en",
+	"meta": {
+		"entityType": {
+			"id": "location",
+			"uid": 0
+		},
+		"locale": "en",
+		"updateTimestamp": "2022-08-31T12:10:21Z"
+	},
+	"name": "Turtlehead Tacos (Milan)",
+	"siteDomain": "",
+	"siteId": 0,
+	"siteInternalHostName": "",
+	"slug": "location20",
+	"uid": 24844081
+}
