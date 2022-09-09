@@ -2,7 +2,7 @@
  * This is an example of how to create a static template that uses getStaticProps to retrieve data.
  */
 import * as React from "react";
-import fetch from "fetch-everywhere";
+// import fetch from "fetch-everywhere";
 import "../index.css";
 import {
   Template,
@@ -43,15 +43,15 @@ type ExternalImageData = TemplateProps & { externalImage: ExternalImage };
  *
  * If the page is truly static this function is not necessary.
  */
-export const transformProps: TransformProps<ExternalImageData> = async (
-  data
-) => {
-  const url = import.meta.env.YEXT_PUBLIC_EXTERNAL_IMAGE_API_BASE_URL + "/2";
-  const externalImage = (await fetch(url).then((res: any) =>
-    res.json()
-  )) as ExternalImage;
-  return { ...data, externalImage };
-};
+// export const transformProps: TransformProps<ExternalImageData> = async (
+//   data
+// ) => {
+//   const url = import.meta.env.YEXT_PUBLIC_EXTERNAL_IMAGE_API_BASE_URL + "/2";
+//   const externalImage = (await fetch(url).then((res: any) =>
+//     res.json()
+//   )) as ExternalImage;
+//   return { ...data, externalImage };
+// };
 
 /**
  * Defines the path that the generated file will live at for production.
