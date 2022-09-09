@@ -292,7 +292,7 @@ const Location: Template<ExternalApiRenderData> = ({
                   mainPhone: mainPhone,
                   name: name,
                   _site: _site,
-                  geocodedCoordinate: geocodedCoordinate,
+                  geocodedCoordinate: yextDisplayCoordinate,
                 })
               }
             />
@@ -301,8 +301,8 @@ const Location: Template<ExternalApiRenderData> = ({
             <div className="box map-info">
               <div className="inner-box">
                 <StaticMap
-                  latitude={geocodedCoordinate.latitude}
-                  longitude={geocodedCoordinate.longitude}
+                  latitude={yextDisplayCoordinate.latitude}
+                  longitude={yextDisplayCoordinate.longitude}
                 />
               </div>
             </div>
