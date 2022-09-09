@@ -57,6 +57,7 @@ export const config: TemplateConfig = {
       "hours",
       "slug",
       "geocodedCoordinate",
+      "yextDisplayCoordinate",
       "services",
       "photoGallery",
       "c_webbanner",
@@ -94,10 +95,10 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
  * a new deploy.
  */
 
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  // return [`old-endpoint`, `stale-endpoint`, `redirect-me`];
-  return ["https://hitchhikers.yext.com/docs/pages/redirects"];
-};
+// export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
+//   return [`old-endpoint`, `stale-endpoint`, `redirect-me`];
+//   return ["https://hitchhikers.yext.com/docs/pages/redirects"];
+// };
 
 /**
  * This allows the user to define a function which will take in their template
@@ -128,7 +129,7 @@ type ExternalApiData = TemplateProps & { externalApiData: nearByLocation };
 export const transformProps: TransformProps<ExternalApiData> = async (
   data: any
 ) => {
-  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500&location=${data.document.geocodedCoordinate.latitude},${data.document.geocodedCoordinate.longitude}&filter={}&api_key=b262ae7768eec3bfa53bfca6d48e4000&v=20181201&resolvePlaceholders=true&entityTypes=location`;
+  const url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities/geosearch?radius=500&location=${data.document.yextDisplayCoordinate.latitude},${data.document.yextDisplayCoordinate.longitude}&filter={}&api_key=b262ae7768eec3bfa53bfca6d48e4000&v=20181201&resolvePlaceholders=true&entityTypes=location`;
   const externalApiData = (await fetch(url).then((res: any) =>
     res.json()
   )) as nearByLocation;
@@ -165,6 +166,7 @@ const Location: Template<ExternalApiRenderData> = ({
     hours,
     mainPhone,
     geocodedCoordinate,
+    yextDisplayCoordinate,
     services,
     c_webbanner,
     slug,

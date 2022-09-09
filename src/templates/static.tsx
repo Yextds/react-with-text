@@ -84,7 +84,7 @@ const Static: Template<ExternalImageRenderData> = ({
       <DetailHeader />
       <div className="centered-container">
         <div className="bg-red-900 text-5xl font-bold text-white p-10 flex items-center justify-center flex-col gap-x-14 gap-y-10 md:flex-row">
-          <Locator />
+          {/* <Locator /> */}
         </div>
       </div>
       <Dfooter />
