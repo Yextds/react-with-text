@@ -1,1 +1,0 @@
-import{r as o}from"../static/index-f56155e1.js";import t from"../server/location.0885a62e.js";import{j as r}from"../static/page-layout-5a0a969b.js";import"../static/index-93d677f0.js";import"../static/browser-ponyfill-7507bc19.js";const a=window.__INITIAL__DATA__;o.exports.hydrate(r(t,{...a}),document.getElementById("reactele"));
