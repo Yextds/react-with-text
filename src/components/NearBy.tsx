@@ -92,7 +92,7 @@ const NearBy = (entities: props) => {
                             <div className="store-link">
                               <a
                                 className="direction"
-                                href={`https://www.google.com/maps/dir/?api=1&origin=${entities.prop.latitude},${entities.prop.longitude}&destination=${i.address.line1} `}
+                                href={`https://www.google.com/maps/dir/?api=1&origin=${i.yextDisplayCoordinate.latitude},${i.yextDisplayCoordinate.longitude}&destination=${i.address.line1} `}
                                 target="_blank"
                                 style={{ marginLeft: "10px" }}
                               >
