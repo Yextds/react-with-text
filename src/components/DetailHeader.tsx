@@ -50,7 +50,7 @@ const links: Link[] = [
 
 const languages = [
   { name: "English", code: "en" },
-  { name: "Franch", code: "fr" },
+  { name: "French", code: "fr" },
 ];
 
 const DetailHeader = () => {
