@@ -22,7 +22,7 @@ export const getHeadConfig: GetHeadConfig<TemplateRenderProps> = () => {
 
 // Template that will show as the page
 const FourOhFour: Template<TemplateRenderProps> = () => {
-  return <h1>404 - Page Not Found check</h1>;
+  return <h1>404 - Page Not Found </h1>;
 };
 
 export default FourOhFour;
