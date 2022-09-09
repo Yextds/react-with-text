@@ -95,10 +95,10 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
  * a new deploy.
  */
 
-// export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-//   return [`old-endpoint`, `stale-endpoint`, `redirect-me`];
-//   return ["https://hitchhikers.yext.com/docs/pages/redirects"];
-// };
+export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
+  return [`old-https://y4ukyqhj24-123419-d.sbx.preview.pagescdn.com/fr/location144`, `https://y4ukyqhj24-123419-d.sbx.preview.pagescdn.com/fr/location143`, `redirect-me`];
+  
+};
 
 /**
  * This allows the user to define a function which will take in their template

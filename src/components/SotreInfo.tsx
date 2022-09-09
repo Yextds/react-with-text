@@ -15,7 +15,6 @@ const StoreInfo = (data: props) => {
     lng: 0.0,
   });
   useEffect(() => {
-    
     getCurrentLocationLatLng();
   });
   const getCurrentLocationLatLng = () => {
