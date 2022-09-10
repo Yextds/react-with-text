@@ -54,7 +54,7 @@ const Locator = () => {
                       return (
                         <>
                           <a href={i.slug}>
-                            <li style={{ padding: "25px" }}>
+                            <li style={{ padding: "35px" }}>
                               <span>
                                 {i.meta.language}/{i.meta.id}
                               </span>
