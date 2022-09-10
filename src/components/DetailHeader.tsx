@@ -43,7 +43,7 @@ const links: Link[] = [
   },
   {
     label: "LOCATION",
-    url: "/turtlehead-tacos",
+    url: "/",
   },
 ];
 
