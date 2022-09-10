@@ -95,9 +95,9 @@ export const getPath: GetPath<TemplateProps> = ({ document }) => {
  * a new deploy.
  */
 
-export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
-  return [`/en/location5`];
-};
+// export const getRedirects: GetRedirects<TemplateProps> = ({ document }) => {
+//   return [`/en/location5`];
+// };
 
 /**
  * This allows the user to define a function which will take in their template
