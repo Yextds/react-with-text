@@ -261,7 +261,6 @@ const Location: Template<ExternalApiRenderData> = ({
 
   return (
     <>
-      {/* <AppInformation/> */}
       <HeaderDetail />
       <Breadcrumb />
       <Banner prop={banner} />
@@ -297,11 +296,7 @@ const Location: Template<ExternalApiRenderData> = ({
           </div>
         </div>
       </div>
-
-      {/* <LocationInformation props={Array} /> */}
       <About prop={img} />
-      {/* <FoodList prop={img} /> */}
-      {/* <PhotoGallery photoGallery={photoGallery} /> */}
       <NearBy prop={externalApiData} />
       <Dfooter />
       {/*
