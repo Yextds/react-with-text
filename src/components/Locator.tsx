@@ -1,8 +1,10 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import LoaderComponent from "../components/LoaderComponent";
 const Locator = () => {
   const [data, setData] = useState([]);
+  const [isShow, setIsShow] = useState(true);
   useEffect(() => {
     getLocation();
   }, []);
@@ -12,7 +14,12 @@ const Locator = () => {
     return axios
       .get(url)
       .then((res) => {
-        setData(res.data.response.entities);
+        if (res.data.response.entities) {
+          setData(res.data.response.entities);
+          setIsShow(false);
+        } else {
+          setIsShow(true);
+        }
         console.log(res.data.response.entities, "??????????");
       })
       .catch(function (error) {
@@ -48,22 +55,28 @@ const Locator = () => {
                 </button>
               </div>
               <div className="error-text mt-2 leading-[5px] text-black">
-                <ul>
-                  {data &&
-                    data.map((i: any) => {
-                      return (
-                        <>
-                          <a href={i.slug}>
-                            <li style={{ padding: "35px" }}>
-                              <span>
-                                {i.meta.language}/{i.meta.id}
-                              </span>
-                            </li>
-                          </a>
-                        </>
-                      );
-                    })}
-                </ul>
+                {isShow ? (
+                  <LoaderComponent />
+                ) : (
+                  <>
+                    <ul>
+                      {data &&
+                        data.map((i: any) => {
+                          return (
+                            <>
+                              <a href={i.slug}>
+                                <li style={{ padding: "35px" }}>
+                                  <span>
+                                    {i.meta.language}/{i.meta.id}
+                                  </span>
+                                </li>
+                              </a>
+                            </>
+                          );
+                        })}
+                    </ul>
+                  </>
+                )}
               </div>
               <div className="currentLocation text-right my-2 float-right">
                 <button
