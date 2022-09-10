@@ -19,11 +19,7 @@ type PhotoGallery = {
 
 const PhotoGallery = (props: PhotoGallery) => {
   const { photoGallery } = props;
-  React.useEffect(() => {
-    photoGallery.map((image: any, index: any) =>
-      console.log(image.image.url, "iiiiiiii")
-    );
-  });
+
   return (
     <div className="photoGallery" style={{ display: "flex", height: "400px" }}>
       {photoGallery.map((i: any, index: any) => (

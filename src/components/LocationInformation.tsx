@@ -29,8 +29,6 @@ const LocationInformation: FC<props> = (data: props) => {
     googleMapsApiKey: "AIzaSyCbRR26VkSZBKO1YJfG9ZYRSzcyShBO9-A",
   });
   useEffect(() => {
-    console.log(data.props, "ppppp");
-    console.log(data.props.address, "j;k;");
     getCurrentLocationLatLng();
     setGetData(data.props);
   }, []);

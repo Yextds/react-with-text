@@ -79,11 +79,8 @@ const DetailHeader = () => {
 
   useEffect(() => {
     let url = window.location.href;
-
     const myArray = url.split("/");
     let lang = myArray[myArray.length - 2];
-    console.log(lang, "lang");
-
     changeLang(lang);
   }, []);
   return (
