@@ -55,15 +55,15 @@ const languages = [
 
 const DetailHeader = () => {
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState("en");
+  function toggle(lng: any) {
+    i18n.changeLanguage(lng);
+  }
 
   const onLanguageChange = (locale: string) => {
-    // localStorage.removeItem("language");
-    // localStorage.setItem("language", locale);
-    // console.log(localStorage.getItem("language"), "item");
-    i18n.changeLanguage(locale);
+    toggle(locale);
     const path = generateLanguage(locale, window.location);
-    console.log(path, "path");
+    localStorage.setItem("language", locale);
+    // console.log(path, "path");
     window.history.pushState({}, "", path);
   };
 
@@ -74,27 +74,17 @@ const DetailHeader = () => {
       </a>
     </div>
   ));
-
-  function generateLanguage2(locale: string, location: Location) {
-    const ROUTE = "/:locale/:path*";
-    const definePath = compile(ROUTE);
-    let subPaths = null;
-
-    if (location !== null) {
-      const routeComponents = pathToRegexp(ROUTE).exec(location.pathname);
-      if (routeComponents && routeComponents[2]) {
-        subPaths = routeComponents[2].split("/");
-      }
-    }
-    return definePath({
-      locale,
-      path: subPaths,
-    });
+  function changeLang(lng: string) {
+    // i18n.changeLanguage(lng);
   }
+
   useEffect(() => {
-    const path = generateLanguage2("en", window.location);
-    window.history.pushState({}, "", path);
-    console.log("working");
+    let lang: any = localStorage.getItem("language");
+    console.log(lang, "language");
+    changeLang(lang);
+    // const path = generateLanguage2("en", window.location);
+    // window.history.pushState({}, "", path);
+    // console.log("working");
     // localStorage.setItem("language", "en");
   }, []);
   return (
