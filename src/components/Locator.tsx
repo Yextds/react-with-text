@@ -15,8 +15,6 @@ const Locator = () => {
                 {/* <Autosuggestion  searchQuery={searchQuery} /> */}
                 <input
                   className=" border border-[#999]  search_key flex-[1] !pr-11"
-                  type="text"
-                  id="location-input"
                   placeholder="Eg. EC2A 1RS"
                   aria-label="Eg. EC2A 1RS"
                   autoComplete="off"
@@ -47,7 +45,7 @@ const Locator = () => {
               <div className="selectedFilterDiv"></div>
             </div>
           </div>
-          {/* <MapList locations={LocationData} />   */}
+          <p>Locator page</p>
           <div className="search-listing float-left w-full lg:w-1/2 lg:pr-[30px] xl:pr-[72px]">
             <div className="panel min-h-[150px] lg:min-h-[260px] lg:w-[calc(100%_-_100px)]">
               <div className="spinner">
@@ -61,7 +59,7 @@ const Locator = () => {
               </div>
               <div className="result-list">
                 <div className="result-list-inner">
-                  {/* <LocationList locations={LocationData} /> */}
+                  <p>locator page</p>
                 </div>
 
                 {/* <div className="viewMoreBtnDiv text-center pt-5 md:pt-0">
