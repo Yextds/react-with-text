@@ -4,20 +4,21 @@ import axios from "axios";
 const Locator = () => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    // getLocation();
-  });
-  // function getLocation() {
-  //   let url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=12a9a6a0d156e718bee1a5e3de131b8b&v=20211229&limit=50&entityTypes=location`;
+    getLocation();
+  }, []);
+  function getLocation() {
+    let url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=dc202b26295a3d06939d779b0c97b428&v=20211229&limit=50&entityTypes=location&languages=fr`;
 
-  //   return axios
-  //     .get(url)
-  //     .then((res) => {
-  //       setData(res.data.response.entities);
-  //     })
-  //     .catch(function (error) {
-  //       console.log(error);
-  //     });
-  // }
+    return axios
+      .get(url)
+      .then((res) => {
+        setData(res.data.response.entities);
+        console.log(res.data.response.entities, "??????????");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
   return (
     <>
       <section className="testimonial-bg">
@@ -46,7 +47,24 @@ const Locator = () => {
                   Search
                 </button>
               </div>
-              <div className="error-text mt-2 leading-[20px] text-red"></div>
+              <div className="error-text mt-2 leading-[5px] text-black">
+                <ul>
+                  {data &&
+                    data.map((i: any) => {
+                      return (
+                        <>
+                          <a href={i.slug}>
+                            <li style={{ padding: "25px" }}>
+                              <span>
+                                {i.meta.language}/{i.meta.id}
+                              </span>
+                            </li>
+                          </a>
+                        </>
+                      );
+                    })}
+                </ul>
+              </div>
               <div className="currentLocation text-right my-2 float-right">
                 <button
                   data-yext-analytics="useMyLocation"
