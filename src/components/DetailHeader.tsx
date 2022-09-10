@@ -43,7 +43,7 @@ const links: Link[] = [
   },
   {
     label: "LOCATION",
-    url: "https://master-lurch--padding--anemia-sbx-pgsdemo-com.sbx.preview.pagescdn.com/turtlehead-tacos",
+    url: "/turtlehead-tacos",
   },
 ];
 
