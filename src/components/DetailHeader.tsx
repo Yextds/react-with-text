@@ -75,7 +75,7 @@ const DetailHeader = () => {
     </div>
   ));
   function changeLang(lng: string) {
-    // i18n.changeLanguage(lng);
+    i18n.changeLanguage(lng);
   }
 
   useEffect(() => {
