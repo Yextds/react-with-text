@@ -1,6 +1,5 @@
 import * as React from "react";
-// import Cta from "./Cta";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { pathToRegexp, compile } from "path-to-regexp";
 import logo1 from "../images/logo1.png";
@@ -63,7 +62,6 @@ const DetailHeader = () => {
     toggle(locale);
     const path = generateLanguage(locale, window.location);
     localStorage.setItem("language", locale);
-    // console.log(path, "path");
     window.history.pushState({}, "", path);
   };
 
@@ -74,18 +72,16 @@ const DetailHeader = () => {
       </a>
     </div>
   ));
+
   function changeLang(lng: string) {
     i18n.changeLanguage(lng);
   }
 
   useEffect(() => {
+    console.log(window.location, "pathhhhhhh");
     let lang: any = localStorage.getItem("language");
     console.log(lang, "language");
     changeLang(lang);
-    // const path = generateLanguage2("en", window.location);
-    // window.history.pushState({}, "", path);
-    // console.log("working");
-    // localStorage.setItem("language", "en");
   }, []);
   return (
     <>
