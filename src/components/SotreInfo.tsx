@@ -21,12 +21,11 @@ const StoreInfo = (data: props) => {
     navigator?.geolocation.getCurrentPosition(
       ({ coords: { latitude: lat, longitude: lng } }) => {
         const pos = { lat, lng };
-       
+
         setCurrentLocationLatLng({
           lat: pos.lat,
           lng: pos.lng,
         });
-        console.log(pos, "pos");
       }
     );
   };
@@ -76,9 +75,7 @@ const StoreInfo = (data: props) => {
             <a href="tel:02076134893">{data.prop.mainPhone}</a>
           </p>
         </div>
-        {
-          console.log(currentLocationLatLng,'check')
-        }
+
         <div className="store-link">
           <a
             className="direction"

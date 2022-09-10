@@ -1,6 +1,6 @@
 import * as React from "react";
 // import Cta from "./Cta";
-
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { pathToRegexp, compile } from "path-to-regexp";
 import logo1 from "../images/logo1.png";
@@ -55,11 +55,15 @@ const languages = [
 
 const DetailHeader = () => {
   const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState("en");
 
   const onLanguageChange = (locale: string) => {
+    // localStorage.removeItem("language");
+    // localStorage.setItem("language", locale);
+    // console.log(localStorage.getItem("language"), "item");
     i18n.changeLanguage(locale);
     const path = generateLanguage(locale, window.location);
-
+    console.log(path, "path");
     window.history.pushState({}, "", path);
   };
 
@@ -71,6 +75,28 @@ const DetailHeader = () => {
     </div>
   ));
 
+  function generateLanguage2(locale: string, location: Location) {
+    const ROUTE = "/:locale/:path*";
+    const definePath = compile(ROUTE);
+    let subPaths = null;
+
+    if (location !== null) {
+      const routeComponents = pathToRegexp(ROUTE).exec(location.pathname);
+      if (routeComponents && routeComponents[2]) {
+        subPaths = routeComponents[2].split("/");
+      }
+    }
+    return definePath({
+      locale,
+      path: subPaths,
+    });
+  }
+  useEffect(() => {
+    const path = generateLanguage2("en", window.location);
+    window.history.pushState({}, "", path);
+    console.log("working");
+    // localStorage.setItem("language", "en");
+  }, []);
   return (
     <>
       {
