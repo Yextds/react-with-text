@@ -257,17 +257,6 @@ const Location: Template<ExternalApiRenderData> = ({
     let time: any = Object.values(arr4[0])[0];
 
     setClosingTime(time.openIntervals[0].end);
-    // Array.push({
-    //   photoGallery: photoGallery,
-    //   address: address,
-    //   mainPhone: mainPhone,
-    //   name: name,
-    //   _site: _site,
-    //   geocodedCoordinate: geocodedCoordinate,
-    //   services: services,
-    //   hours: arr4,
-    //   closeTime: time.openIntervals[0].end,
-    // });
   }
 
   return (
