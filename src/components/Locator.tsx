@@ -1,6 +1,23 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import axios from "axios";
 const Locator = () => {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    // getLocation();
+  });
+  // function getLocation() {
+  //   let url = `https://liveapi-sandbox.yext.com/v2/accounts/me/entities?api_key=12a9a6a0d156e718bee1a5e3de131b8b&v=20211229&limit=50&entityTypes=location`;
+
+  //   return axios
+  //     .get(url)
+  //     .then((res) => {
+  //       setData(res.data.response.entities);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // }
   return (
     <>
       <section className="testimonial-bg">
