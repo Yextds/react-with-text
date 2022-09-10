@@ -61,7 +61,7 @@ const DetailHeader = () => {
   const onLanguageChange = (locale: string) => {
     toggle(locale);
     const path = generateLanguage(locale, window.location);
-    localStorage.setItem("language", locale);
+
     window.history.pushState({}, "", path);
   };
 
@@ -73,14 +73,17 @@ const DetailHeader = () => {
     </div>
   ));
 
-  function changeLang(lng: string) {
+  const changeLang = (lng: string) => {
     i18n.changeLanguage(lng);
-  }
+  };
 
   useEffect(() => {
-    console.log(window.location, "pathhhhhhh");
-    let lang: any = localStorage.getItem("language");
-    console.log(lang, "language");
+    let url = window.location.href;
+
+    const myArray = url.split("/");
+    let lang = myArray[myArray.length - 2];
+    console.log(lang, "lang");
+
     changeLang(lang);
   }, []);
   return (
