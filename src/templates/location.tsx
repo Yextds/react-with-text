@@ -19,7 +19,7 @@ import "../i18n";
 import { nearByLocation } from "../types/nearByLocation";
 import "../index.css";
 import "../main.css";
-
+import Hours from "../components/Hours";
 // const location = useLocation();
 
 import {
@@ -257,12 +257,14 @@ const Location: Template<ExternalApiRenderData> = ({
     let time: any = Object.values(arr4[0])[0];
 
     setClosingTime(time.openIntervals[0].end);
+    console.log(arr4, "////");
   }
 
   return (
     <>
       <HeaderDetail />
       <Breadcrumb />
+
       <Banner prop={banner} />
       <div className="location-information">
         <div className="container">
@@ -283,7 +285,16 @@ const Location: Template<ExternalApiRenderData> = ({
                 })
               }
             />
-            <LocationTimming props={arr4} />
+            <div className="box store-timing">
+              <div className="inner-box">
+                <h4>{t("Store Timing")}</h4>
+
+                <div className="hours">
+                  <Hours hours={hours} />
+                </div>
+              </div>
+            </div>
+            {/* <LocationTimming props={hours} /> */}
             {/* <Map props={geocodedCoordinate} /> */}
             <div className="box map-info">
               <div className="inner-box">
